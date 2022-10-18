@@ -63,10 +63,15 @@ It has the following steps:
 **Building Hierarchical Time Series**
 
 Due to memory constraints, we can only build hierarchical time series up to individual store level
+- Python Package: scikit-hts
 
 **Top Levels Modeling**
 
 Time Series at top levels have noticeable trends and seasonality. We built time series models on each time series using Facebook Prophet. 
+- we took holidays into model
+- we tuned 2 hyperparameters:
+    - changepoint_prior_scale
+    - seasonality_priro_scale
 
 
 **Bottom level modeling**
@@ -81,13 +86,15 @@ we refer the following kernels for Feature Engineering.
 - [Future Sales XGBoost - top 3%](https://www.kaggle.com/code/gordotron85/future-sales-xgboost-top-3/notebook)
 - [Feature engineering, LightGBM - Top 1%](https://www.kaggle.com/code/uladzimirkapeika/feature-engineering-lightgbm-top-1/notebook)
 
-model evaluation
+**model evaluation**
 | Models                    | RMSE_Train | RMSE_Test | Generalization | RMSE_kaggle_submission | 
 |---------------------------|--------------|-------------|----------------|----------|
 | LightGBM            | 1.08         | 0.93        | 14.38%           | 0.94     | 
 | XGBRegressor | 0.97       | 0.94        | 3.1%           | 0.96     | 
 | StackingRegressor  | 0.99         | 0.92       | 7.17%           | 0.95    | 
 
+**Shap Values**
+![](./src/Shap_values.png)
 
 **Forecast reconciliation**
 
@@ -119,7 +126,7 @@ We tried 3 different reconciliaton strategies:
 
 ---
 # Conclusion 
-- Hierarchical Forecasting & Reconciliation did improve the overall prediction of intermittent time series. 
+- Hierarchical Forecasting & Reconciliation did improve the overall prediction of intermittent time series with correct reconciliation strategy 
 - Hierarchical Forecasting & Reconciliation can apply to any time series with a hierarchy structure
 - Scikit-hts offers a lot of flexibilities 
     - Assist to build hierarchical time series from bottom level data
