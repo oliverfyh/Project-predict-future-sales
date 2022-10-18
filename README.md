@@ -74,6 +74,8 @@ Time Series at top levels have noticeable trends and seasonality. We built time 
     - changepoint_prior_scale
     - seasonality_priro_scale
 
+![](./src/prophet_forecasting.png)
+
 
 **Bottom level modeling**
 
