@@ -62,13 +62,14 @@ It has the following steps:
 # Implementation
 **Building Hierarchical Time Series**
 
+We used scikit-hts to build hierarchical time series from dataset.
 Due to memory constraints, we can only build hierarchical time series up to individual store level
-- Python Package: scikit-hts
+
 
 **Top Levels Modeling**
 
 Time Series at top levels have noticeable trends and seasonality. We built time series models on each time series using Facebook Prophet. 
-- we took holidays into model
+- we took yearly_seasonality and holidays into consideration when modeling
 - we tuned 2 hyperparameters:
     - changepoint_prior_scale
     - seasonality_priro_scale
@@ -94,6 +95,7 @@ we refer the following kernels for Feature Engineering.
 | StackingRegressor  | 0.99         | 0.92       | 7.17%           | 0.95    | 
 
 **Shap Values**
+
 ![](./src/Shap_values.png)
 
 **Forecast reconciliation**
