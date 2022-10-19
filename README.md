@@ -45,7 +45,7 @@ Data fields
 # Executive Summary
 **Introduction**
 
-The Dataset invloves 60 shops, 84 product categories and 22,000 products. Most products only have occasional transactions. The data are very intermittent and sparse, without clearly defined trend and any seasonal behavior. It is very difficult for a conventional time series model such as ARIMA to forecast.
+The Dataset invloves 60 shops, 84 product categories and 22,170 products. Most products only have occasional transactions. The data are very intermittent and sparse, without clearly defined trend and any seasonal behavior. It is very difficult for a conventional time series model such as ARIMA to forecast.
 
 
 # Methodology
@@ -106,8 +106,8 @@ We used scikit-hts to reconcile the forecasts at top levels and prediction at bo
 
 We tried 3 different reconciliaton strategies:
 - OLS : Ordinary least squares
-- WLSS : Structurally weighted OLS
-- WLSV : Variance-weighted OLS 
+- WLSS : Structurally weighted least squares
+- WLSV : Variance-weighted least squares
 
 ## Reconciliation Strategies Performance and analysis
 ![](./src/reconciliation%20performance.png)
@@ -152,7 +152,7 @@ We tried 3 different reconciliaton strategies:
 
 # Notebook Contents
 1. [01_data_cleaning_and_EDA] 
-2. [02_feat02_building_hierarchical_time_series_and_top_level_forecastingure_engineering]
-3. [03_03_bottom_level_feature_engineering_and_modelingmodelling]
-4. [04_spr04_top_level_forecasts_and_bottom_level_predictions_reconciliationay_analysis]
+2. [02_building_hierarchical_time_series_and_top_level_forecastingure_engineering]
+3. [03_bottom_level_feature_engineering_and_modelingmodelling]
+4. [04_top_level_forecasts_and_bottom_level_predictions_reconciliationay_analysis]
 ---
