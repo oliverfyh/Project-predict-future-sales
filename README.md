@@ -16,6 +16,7 @@ we aim to build robust models to forecast monthly sales for each product in each
 --- 
 ## Data Sources
 The sources of the data will be from [Kaggle Competition: Predict Future Sales](https://www.kaggle.com/competitions/competitive-data-science-predict-future-sales/data).
+Since the original dataset are in russian, I translated them into english for better comprehension
 
 File descriptions
 
@@ -23,8 +24,11 @@ File descriptions
     test.csv - the test set. You need to forecast the sales for these shops and products for November 2015.
     sample_submission.csv - a sample submission file in the correct format.
     items.csv - supplemental information about the items/products.
+    items_en.csv - English version of "items.csv"
     item_categories.csv  - supplemental information about the items categories.
+    item_categories_en.csv - English version of "item_categories.csv"
     shops.csv- supplemental information about the shops.
+    shops_en.csv - English version of "shops.csv"
 
 Data fields
 
