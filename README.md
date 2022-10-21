@@ -63,6 +63,9 @@ It has the following steps:
 - Hierarchical Forecasting
 - Forecast reconciliation
 
+![](./src/hts_forecasting_reconciliantion_steps.png)
+
+
 # Implementation
 **Building Hierarchical Time Series**
 
