@@ -113,9 +113,9 @@ We used scikit-hts to reconcile the forecasts at top levels and prediction at bo
 ![](https://miro.medium.com/max/720/1*2IJF5sR8a4tI9YrQiqUYVA.png)
 
 
-The image above [(by Weihao Weng)](https://medium.com/towards-data-science/optimal-forecast-reconciliation-for-hierarchical-time-series-ea892ca105a9)  shows the matrix notation of reconciliation equation ($\tilde{y} = SP\hat{y}$)
+The image above [(by Jiahao Weng)](https://medium.com/towards-data-science/optimal-forecast-reconciliation-for-hierarchical-time-series-ea892ca105a9)  shows the matrix notation of reconciliation equation $\tilde{y} = SP\hat{y}$
 
-In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyndman found that forecasts are optimally reconciled 
+In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyndman found that forecasts are optimally reconciled (minimising error variances of the coherent forecasts)
 when $P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
 where W is the variance-covariance matrix of the corresponding base forecast errors.
 
@@ -127,7 +127,7 @@ We tried 3 such simplified reconciliaton strategies provided by scikit-hts:
 - WLSS : Structurally weighted least squares
     - where $W$ is simplifed to $diag(S)$, and thus $P = (S^{T}(diag(S))^{-1}S)^{-1}S^{T}(diag(S))^{-1}$
 - WLSV : Variance-weighted least squares
-    - where $W$ is simplifed to  $diag(\hat{W}), \hat{W}=\frac{1}{T}\sum_{t=1}^{T}e_{t}(e_{t})^{T} $
+    - where $W$ is simplifed to  $diag(\hat{W}), \hat{W}=\frac{1}{T}\sum_{t=1}^{T} e_{t}(e_{t})^{T}$
 
 For the details of these 3 strategies, please refer to Prof. Hyndman's [online textbook](https://otexts.com/fpp3/reconciliation.html).
 
@@ -136,7 +136,10 @@ For the details of these 3 strategies, please refer to Prof. Hyndman's [online t
 ## Reconciliation Strategies Performance and analysis
 ![](./src/reconciliation%20performance.png)
 - OLS strategy produced many negative results. It made the coherent prediction worse
+    - OLS assumes that all time series in all level have similar error variance.
+    - Our datasets obviously violated the assumption
 - WLSS strategy produced better results in overall
+    - WLSS assumes that all time series in same leve have similar error variance and 
 - We encountered some errors when running WLSV strategy
 - The Improvement of reconciliation is not encouraging 
 - Possible reasons:
