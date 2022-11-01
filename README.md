@@ -124,10 +124,12 @@ when $\small P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
 where W is the variance-covariance matrix of the corresponding base forecast errors.
 
 Thus, reconciliation equation can be written as below:
+
 $$\large\begin{align*}
  \tilde{y} &= SP\hat{y} \\
       &=S(S^{T}W^{-1}S)^{-1}S^{T}W^{-1}\hat{y}
 \end{align*}$$
+
 
 Since W is difficult or expensive to obtain, Prof. Hyndman proposed several simplifying approximations that have been shown to work well in both simulations and in practice.  
 
