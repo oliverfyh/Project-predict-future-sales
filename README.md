@@ -141,7 +141,7 @@ We tried 3 such simplified reconciliaton strategies provided by scikit-hts:
 - WLSS : Structurally weighted least squares
     - where $\small W$ is simplifed to $diag(S1)$, and $1$ is a unit vector of dimension m (the number of bottom-level series), thus $\small P = (S^{T}(diag(S1))^{-1}S)^{-1}S^{T}(diag(S1))^{-1}$
 - WLSV : Variance-weighted least squares
-    - where $\small W$ is simplifed to  $\small diag(\hat{W}), \hat{W}=\frac{1}{T}\sum_{t=1}^{T} e_{t}(e_{t})^{T}$,  $e$ is an n-dimensional vector of residuals of the models that generated the base forecasts stacked in the same order as the data
+    - where $\small W$ is simplifed to  $\small diag(\hat{W}), \hat{W}=\frac{1}{T}\displaystyle\sum_{t=1}^{T} e_{t}(e_{t})^{T}$,  $e$ is an n-dimensional vector of residuals of the models that generated the base forecasts stacked in the same order as the data
 
 For the details of these 3 strategies, please refer to Prof. Hyndman's [online textbook](https://otexts.com/fpp3/reconciliation.html).
 
