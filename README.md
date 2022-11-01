@@ -122,15 +122,15 @@ The image below [(by Jiahao Weng)](https://medium.com/towards-data-science/optim
 In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyndman found that forecasts are optimally reconciled (minimised error variances of the coherent forecasts)
 when $\small P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
 where W is the variance-covariance matrix of the corresponding base forecast errors.
-$$\huge \tilde{y} = SP\hat{y}$$  
-$$\huge     = S(S^{T}W^{-1}S)^{-1}S^{T}W^{-1}\hat{y}$$
+
+$$\large\begin{align*}
+ \tilde{y} &= SP\hat{y} \\
+      &=S(S^{T}W^{-1}S)^{-1}S^{T}W^{-1}\hat{y}
+\end{align*}$$
+
 Since W is difficult or expensive to obtain, Prof. Hyndman proposed several simplifying approximations that have been shown to work well in both simulations and in practice.  
 
-\begin{equation}
-  x = a_0 + \cfrac{1}{a_1 
-          + \cfrac{1}{a_2 
-          + \cfrac{1}{a_3 + \cfrac{1}{a_4} } } }
-\end{equation}
+
 
 We tried 3 such simplified reconciliaton strategies provided by scikit-hts:
 - OLS : Ordinary least squares
@@ -147,17 +147,16 @@ For the details of these 3 strategies, please refer to Prof. Hyndman's [online t
 ## Reconciliation Strategies Performance and analysis
 ![](./src/reconciliation%20performance.png)
 - OLS strategy produced many negative results. It made the coherent prediction worse
-    - OLS assumes that all time series in all level have similar error variance.
-    - Our datasets obviously violated the assumption
+    
 - WLSS strategy produced better results in overall
-    - WLSS assumes that all time series in same leve have similar error variance and 
+   
 - We encountered some errors when running WLSV strategy
 - The Improvement of reconciliation is not encouraging 
 - Possible reasons:
     - Due to memory constraints, we just built hierarchical time series up to one store, which may not able to reflect macro trends or seasonalities
     - Limited hyperparameter tuning 
     - Many products/categories have too limited sales transactions 
-    - Many state-of-the-art reconciliation strategies have not supported by Scikit-hts 
+    - New reconciliation strategies have not supported by Scikit-hts 
         - MinTSample
         - MinTShrink
 
