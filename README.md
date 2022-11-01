@@ -123,6 +123,7 @@ In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyn
 when $\small P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
 where W is the variance-covariance matrix of the corresponding base forecast errors.
 
+Thus, reconciliation equation can be written as below:
 $$\large\begin{align*}
  \tilde{y} &= SP\hat{y} \\
       &=S(S^{T}W^{-1}S)^{-1}S^{T}W^{-1}\hat{y}
