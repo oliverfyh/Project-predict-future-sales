@@ -110,24 +110,35 @@ we refer the following kernels for Feature Engineering.
 **Forecast reconciliation**
 
 We used scikit-hts to reconcile the forecasts at top levels and prediction at bottom level to ensure they are coherent and sum up correctly in the heirachy.
+
+The image below [(by Jiahao Weng)](https://medium.com/towards-data-science/optimal-forecast-reconciliation-for-hierarchical-time-series-ea892ca105a9)  shows the matrix notation of reconciliation equation: 
+
+ $$\huge \tilde{y} = SP\hat{y}$$
+
 ![](https://miro.medium.com/max/720/1*2IJF5sR8a4tI9YrQiqUYVA.png)
 
 
-The image above [(by Jiahao Weng)](https://medium.com/towards-data-science/optimal-forecast-reconciliation-for-hierarchical-time-series-ea892ca105a9)  shows the matrix notation of reconciliation equation $\tilde{y} = SP\hat{y}$
 
-In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyndman found that forecasts are optimally reconciled (minimising error variances of the coherent forecasts)
-when $P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
+In his [online textbook](https://otexts.com/fpp3/reconciliation.html), Prof. Hyndman found that forecasts are optimally reconciled (minimised error variances of the coherent forecasts)
+when $\small P = (S^{T}W^{-1}S)^{-1}S^{T}W^{-1}$,
 where W is the variance-covariance matrix of the corresponding base forecast errors.
-
+$$\huge \tilde{y} = SP\hat{y}$$  
+$$\huge     = S(S^{T}W^{-1}S)^{-1}S^{T}W^{-1}\hat{y}$$
 Since W is difficult or expensive to obtain, Prof. Hyndman proposed several simplifying approximations that have been shown to work well in both simulations and in practice.  
+
+\begin{equation}
+  x = a_0 + \cfrac{1}{a_1 
+          + \cfrac{1}{a_2 
+          + \cfrac{1}{a_3 + \cfrac{1}{a_4} } } }
+\end{equation}
 
 We tried 3 such simplified reconciliaton strategies provided by scikit-hts:
 - OLS : Ordinary least squares
-    - where $P$ is simplified to  $(S^{T}S)^{-1}S^{T} $
+    - where $\small P$ is simplified to  $\small (S^{T}S)^{-1}S^{T} $
 - WLSS : Structurally weighted least squares
-    - where $W$ is simplifed to $diag(S)$, and thus $P = (S^{T}(diag(S))^{-1}S)^{-1}S^{T}(diag(S))^{-1}$
+    - where $\small W$ is simplifed to $diag(S1)$, and $1$ is a unit vector of dimension m (the number of bottom-level series), thus $\small P = (S^{T}(diag(S1))^{-1}S)^{-1}S^{T}(diag(S1))^{-1}$
 - WLSV : Variance-weighted least squares
-    - where $W$ is simplifed to  $diag(\hat{W}), \hat{W}=\frac{1}{T}\sum_{t=1}^{T} e_{t}(e_{t})^{T}$
+    - where $\small W$ is simplifed to  $\small diag(\hat{W}), \hat{W}=\frac{1}{T}\sum_{t=1}^{T} e_{t}(e_{t})^{T}$,  $e$ is an n-dimensional vector of residuals of the models that generated the base forecasts stacked in the same order as the data
 
 For the details of these 3 strategies, please refer to Prof. Hyndman's [online textbook](https://otexts.com/fpp3/reconciliation.html).
 
